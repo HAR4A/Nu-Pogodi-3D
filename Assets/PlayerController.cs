@@ -7,11 +7,16 @@ public class PlayerController : MonoBehaviour
     public GameObject playerUpperCatch; // Объект, который будет включаться или выключаться
     public GameObject playerLowerCatch; // Объект, который будет включаться или выключаться
 
+    private float initialRotationY; // Начальный угол поворота по оси Y
+
     void Start()
     {
         // Начальное состояние объектов
         playerUpperCatch.SetActive(false);
         playerLowerCatch.SetActive(true);
+
+        // Сохраняем начальный угол поворота
+        initialRotationY = -90;/*transform.rotation.eulerAngles.y*/
     }
 
     void Update()
@@ -32,12 +37,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             // Поворачиваем персонажа на 90 градусов вправо
-            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            transform.rotation = Quaternion.Euler(0f, initialRotationY + 90f, 0f);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             // Поворачиваем персонажа на 270 градусов влево
-            transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+            transform.rotation = Quaternion.Euler(0f, initialRotationY - 90f, 0f);
         }
     }
 }
