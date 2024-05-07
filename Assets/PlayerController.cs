@@ -4,10 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float rotationSpeed = 90f; // Скорость поворота
+    public GameObject playerUpperCatch; // Объект, который будет включаться или выключаться
+    public GameObject playerLowerCatch; // Объект, который будет включаться или выключаться
+
+    void Start()
+    {
+        // Начальное состояние объектов
+        playerUpperCatch.SetActive(false);
+        playerLowerCatch.SetActive(true);
+    }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            // Включаем playerUpperCatch и выключаем playerLowerCatch
+            playerUpperCatch.SetActive(true);
+            playerLowerCatch.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            // Включаем playerLowerCatch и выключаем playerUpperCatch
+            playerLowerCatch.SetActive(true);
+            playerUpperCatch.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             // Поворачиваем персонажа на 90 градусов вправо
