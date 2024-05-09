@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject playerUpperCatch; // Объект, который будет включаться или выключаться
-    public GameObject playerLowerCatch; // Объект, который будет включаться или выключаться
+    [SerializeField] private GameObject playerUpperCatch;
+    [SerializeField] private GameObject playerLowerCatch;
 
-    private float initialRotationY; // Начальный угол поворота по оси Y
+    private float rotationAngle = -90f;
 
     void Start()
     {
@@ -16,33 +16,87 @@ public class PlayerController : MonoBehaviour
         playerLowerCatch.SetActive(true);
 
         // Сохраняем начальный угол поворота
-        initialRotationY = -90;/*transform.rotation.eulerAngles.y*/
+        transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
     }
 
     void Update()
     {
+        //повороты право, лево
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {            
+            rotationAngle = 90f;  //right rotation
+            transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {            
+            rotationAngle = -90f;  //left rotation
+            transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+        }
+
+        //верх низ
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            // Включаем playerUpperCatch и выключаем playerLowerCatch
-            playerUpperCatch.SetActive(true);
-            playerLowerCatch.SetActive(false);
+            UpArrow_EnableUpper();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            // Включаем playerLowerCatch и выключаем playerUpperCatch
-            playerLowerCatch.SetActive(true);
-            playerUpperCatch.SetActive(false);
+            DownArrow_ReturnLower();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        //ВЕРХНЯЯ СТРЕЛКА И ВКЛЮЧЕНИЕ ВЕРХНИХ РУК
+        void UpArrow_EnableUpper()
         {
-            // Поворачиваем персонажа на 90 градусов вправо
-            transform.rotation = Quaternion.Euler(0f, initialRotationY + 90f, 0f);
+            if (rotationAngle == -90f)  //-90
+            {
+                playerLowerCatch.SetActive(false);
+                rotationAngle = -90f;
+                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                playerUpperCatch.SetActive(true);
+            }
+            
+            if (rotationAngle == 90f)  //90
+            {
+                playerLowerCatch.SetActive(false);
+                rotationAngle = 90f;
+                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                playerUpperCatch.SetActive(true);                
+            }
+       
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+       
+
+        //НИЖНЯЯ СТРЕЛКА И ВОЗВРАТ НИЖНИХ РУК
+        void DownArrow_ReturnLower() 
         {
-            // Поворачиваем персонажа на 270 градусов влево
-            transform.rotation = Quaternion.Euler(0f, initialRotationY - 90f, 0f);
+            if (rotationAngle == -90f)
+            {   
+                if (playerUpperCatch.transform.rotation == Quaternion.Euler(0f, -90f, 0f))
+                {
+                    playerLowerCatch.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                }
+
+                playerUpperCatch.SetActive(false);
+                rotationAngle = -90f;
+                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                playerLowerCatch.SetActive(true);
+            }
+
+            if (rotationAngle == 90f)
+            {
+                if (playerUpperCatch.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
+                {
+                    playerLowerCatch.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                }
+                playerUpperCatch.SetActive(false);
+                rotationAngle = 90f;
+                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                playerLowerCatch.SetActive(true);
+            }
         }
+
+        
     }
+
 }
+
