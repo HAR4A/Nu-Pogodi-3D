@@ -33,4 +33,15 @@ public class Spawner : MonoBehaviour
             InvokeRepeating("SpawnPrefab", 0f, spawnFrequency); 
         }
     }
+
+    public void StopSpawning()
+    {
+        CancelInvoke("SpawnPrefab");
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
+
+    }
 }
