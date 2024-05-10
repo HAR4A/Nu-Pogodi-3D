@@ -21,20 +21,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //повороты право, лево
-
+        // Повороты право, лево
         if (Input.GetKeyDown(KeyCode.RightArrow))
-        {            
-            rotationAngle = 90f;  //right rotation
+        {
+            rotationAngle = 90f;  // Правый поворот
             transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {            
-            rotationAngle = -90f;  //left rotation
+        {
+            rotationAngle = -90f;  // Левый поворот
             transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
         }
 
-        //верх низ
+        // Верх, низ
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             UpArrow_EnableUpper();
@@ -43,60 +42,21 @@ public class PlayerController : MonoBehaviour
         {
             DownArrow_ReturnLower();
         }
-
-        //ВЕРХНЯЯ СТРЕЛКА И ВКЛЮЧЕНИЕ ВЕРХНИХ РУК
-        void UpArrow_EnableUpper()
-        {
-            if (rotationAngle == -90f)  //-90
-            {
-                playerLowerCatch.SetActive(false);
-                rotationAngle = -90f;
-                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-                playerUpperCatch.SetActive(true);
-            }
-            
-            if (rotationAngle == 90f)  //90
-            {
-                playerLowerCatch.SetActive(false);
-                rotationAngle = 90f;
-                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-                playerUpperCatch.SetActive(true);                
-            }
-       
-        }
-       
-
-        //НИЖНЯЯ СТРЕЛКА И ВОЗВРАТ НИЖНИХ РУК
-        void DownArrow_ReturnLower() 
-        {
-            if (rotationAngle == -90f)
-            {   
-                if (playerUpperCatch.transform.rotation == Quaternion.Euler(0f, -90f, 0f))
-                {
-                    playerLowerCatch.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-                }
-
-                playerUpperCatch.SetActive(false);
-                rotationAngle = -90f;
-                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-                playerLowerCatch.SetActive(true);
-            }
-
-            if (rotationAngle == 90f)
-            {
-                if (playerUpperCatch.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
-                {
-                    playerLowerCatch.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-                }
-                playerUpperCatch.SetActive(false);
-                rotationAngle = 90f;
-                playerUpperCatch.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-                playerLowerCatch.SetActive(true);
-            }
-        }
-
-        
     }
 
-}
+    // верхняя стрелка и включение верхних рук
+    void UpArrow_EnableUpper()
+    {
+        playerLowerCatch.SetActive(false);
+        playerUpperCatch.transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        playerUpperCatch.SetActive(true);
+    }
 
+    // нижняя стрелка и включение нижних рук
+    void DownArrow_ReturnLower()
+    {
+        playerUpperCatch.SetActive(false);
+        playerLowerCatch.transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        playerLowerCatch.SetActive(true);
+    }
+}
