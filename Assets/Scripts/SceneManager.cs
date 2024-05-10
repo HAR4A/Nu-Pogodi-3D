@@ -8,9 +8,17 @@ public class SceneManager : MonoBehaviour
 
     public void RestartGame()
     {
-        int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        
-        // Перезагружаем текущую сцену
-        UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
+        int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;               
+        UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);     //перезагрузка текущей сцены
+    }
+
+    public void PlayGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+    }
+
+    public void ExitGame() 
+    {
+        Application.Quit();
     }
 }
