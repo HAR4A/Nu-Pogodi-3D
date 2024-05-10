@@ -10,13 +10,11 @@ public class PlayerController : MonoBehaviour
     private float rotationAngle = -90f;
 
     void Start()
-    {
-        // Начальное состояние объектов
+    {       
         playerUpperCatch.SetActive(false);
         playerLowerCatch.SetActive(true);
 
-        // Сохраняем начальный угол поворота
-        transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+        transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);   //начальный угол поворота
     }
 
     void Update()
