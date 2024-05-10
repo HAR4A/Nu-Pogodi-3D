@@ -20,6 +20,11 @@ public class DetectBrokenEgg : MonoBehaviour
         if (Count == 5)
         {
             lvlLose.SetActive(true);
+            Spawner spawner = FindObjectOfType<Spawner>();
+            if (spawner != null)
+            {
+                spawner.StopSpawning();
+            }
         }
 
         if (other.gameObject)
