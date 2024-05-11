@@ -9,14 +9,18 @@ public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI CounterText;
     [SerializeField] private TextMeshProUGUI RecordText;
+    [SerializeField] private AudioSource catchEgg;
     private static int sharedCount = 0;
     private int topScore;
     private const string HighScoreKey = "HighScore";
+
+    
 
     private void Start()
     {
         sharedCount = 0;
         topScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+       // GetComponent<AudioSource>();
         UpdateTopScoreText();
     }
 
@@ -25,6 +29,7 @@ public class Counter : MonoBehaviour
        
         if (other.gameObject)
         {
+            catchEgg.GetComponent<AudioSource>().Play();
             sharedCount++; // Увеличиваем общий счет
             UpdateCounterText(); // Обновляем текст счета
             Destroy(other.gameObject); // Уничтожаем яйцо
