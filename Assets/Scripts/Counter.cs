@@ -7,23 +7,48 @@ using TMPro;
 
 public class Counter : MonoBehaviour
 {
-    public TextMeshProUGUI CounterText;
-
-    private int Count = 0;
+    [SerializeField] private TextMeshProUGUI CounterText;
+    [SerializeField] private TextMeshProUGUI RecordText;
+    private static int sharedCount = 0;
+    private int topScore;
+    private const string HighScoreKey = "HighScore";
 
     private void Start()
     {
-        Count = 0;
+        sharedCount = 0;
+        topScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+        UpdateTopScoreText();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Count += 1;
-        CounterText.text = "Яиц: " + Count;
-
+       
         if (other.gameObject)
         {
-           Destroy(other.gameObject);   
+            sharedCount++; // Увеличиваем общий счет
+            UpdateCounterText(); // Обновляем текст счета
+            Destroy(other.gameObject); // Уничтожаем яйцо
+            CheckForNewTopScore();
         }
+    }
+
+    private void UpdateCounterText()
+    {
+        CounterText.text = "Яиц: " + sharedCount;
+    }
+
+
+    private void CheckForNewTopScore()
+    {
+        if (sharedCount > topScore)
+        {
+            topScore = sharedCount;
+            PlayerPrefs.SetInt(HighScoreKey, topScore);
+            UpdateTopScoreText();
+        }
+    }
+    private void UpdateTopScoreText()
+    {
+        RecordText.text = "ТОП: " + topScore;
     }
 }
