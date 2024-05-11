@@ -19,8 +19,7 @@ public class Counter : MonoBehaviour
     private void Start()
     {
         sharedCount = 0;
-        topScore = PlayerPrefs.GetInt(HighScoreKey, 0);
-       // GetComponent<AudioSource>();
+        topScore = PlayerPrefs.GetInt(HighScoreKey, 0);      
         UpdateTopScoreText();
     }
 
