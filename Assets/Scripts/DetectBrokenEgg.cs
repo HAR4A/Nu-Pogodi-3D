@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DetectBrokenEgg : MonoBehaviour
 {
-    [SerializeField] private GameObject lvlLose;   
+    [SerializeField] private GameObject lvlLose;
+    [SerializeField] private AudioSource brokenEgg;
     public static int Count;
    
     public void Start()
@@ -15,6 +16,7 @@ public class DetectBrokenEgg : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         Count += 1;
+        brokenEgg.GetComponent<AudioSource>().Play();
 
         if (Count >= 5)
         {
