@@ -6,9 +6,9 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabsToSpawn;
     [SerializeField] private Transform[] spawnPoints;
-    private float spawnFrequency = 2f; // начальная частота спавна
-    private float frequencyIncrease = 0.5f; // на сколько увеличивается частота спавна каждый раз
-    private float minSpawnFrequency = 0.5f; // минимальная частота спавна
+    private float spawnFrequency = 1f; // скорость спавна
+    private float frequencyIncrease = 0.5f; // частота спавна
+    private float minSpawnFrequency = 1f; // минимальная частота спавна
 
     void Start()
     {       
