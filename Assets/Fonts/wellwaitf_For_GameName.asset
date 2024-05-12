@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - GLOW_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -60,8 +61,8 @@ Material:
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.14
-    - _GlowOffset: 0.32
-    - _GlowOuter: 0.32
+    - _GlowOffset: 0.52
+    - _GlowOuter: 0.15
     - _GlowPower: 0.75
     - _GradientScale: 6
     - _LightAngle: 3.1416
@@ -75,7 +76,7 @@ Material:
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
     - _ScaleRatioB: 0.6770833
-    - _ScaleRatioC: 0.41035354
+    - _ScaleRatioC: 0.30226934
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -88,10 +89,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 512
     - _TextureWidth: 512
-    - _UnderlayDilate: 0.41
-    - _UnderlayOffsetX: 0.8
-    - _UnderlayOffsetY: -0.9
-    - _UnderlaySoftness: 0.34
+    - _UnderlayDilate: 1
+    - _UnderlayOffsetX: -0.85
+    - _UnderlayOffsetY: 1
+    - _UnderlaySoftness: 0.24
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75
@@ -118,11 +119,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: wellwaitfree_regular SDF
+  m_Name: wellwaitf_For_GameName
   m_EditorClassIdentifier: 
-  hashCode: 128070041
+  hashCode: -376421587
   material: {fileID: -7918445951954716190}
-  materialHashCode: -770990951
+  materialHashCode: -407168531
   m_Version: 1.1.0
   m_SourceFontFileGUID: 4d937ae3a5e1f184fa80c6ff21f14c52
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 4d937ae3a5e1f184fa80c6ff21f14c52, type: 3}
