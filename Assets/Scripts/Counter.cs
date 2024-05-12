@@ -28,7 +28,7 @@ public class Counter : MonoBehaviour
        
         if (other.gameObject)
         {
-            catchEgg.GetComponent<AudioSource>().Play();
+            catchEgg.Play();
             sharedCount++; 
             UpdateCounterText(); 
             Destroy(other.gameObject);
