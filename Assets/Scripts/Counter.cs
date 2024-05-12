@@ -29,16 +29,16 @@ public class Counter : MonoBehaviour
         if (other.gameObject)
         {
             catchEgg.GetComponent<AudioSource>().Play();
-            sharedCount++; // Увеличиваем общий счет
-            UpdateCounterText(); // Обновляем текст счета
-            Destroy(other.gameObject); // Уничтожаем яйцо
+            sharedCount++; 
+            UpdateCounterText(); 
+            Destroy(other.gameObject);
             CheckForNewTopScore();
         }
     }
 
     private void UpdateCounterText()
     {
-        CounterText.text = "Яиц: " + sharedCount;
+        CounterText.text = "EGGS: " + sharedCount;
     }
 
 
@@ -53,6 +53,6 @@ public class Counter : MonoBehaviour
     }
     private void UpdateTopScoreText()
     {
-        RecordText.text = "ТОП: " + topScore;
+        RecordText.text = "TOP: " + topScore;
     }
 }
