@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 1125765668}
   - component: {fileID: 1125765667}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2649,7 +2649,7 @@ GameObject:
   - component: {fileID: 1369597831}
   - component: {fileID: 1369597830}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasForBGI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4035,10 +4035,10 @@ SceneRoots:
   - {fileID: 1422784785}
   - {fileID: 336127524}
   - {fileID: 1125765670}
+  - {fileID: 1369597833}
   - {fileID: 2092254358}
   - {fileID: 1876553742}
   - {fileID: 654472214}
   - {fileID: 1697302432}
   - {fileID: 2121181195}
   - {fileID: 860956820}
-  - {fileID: 1369597833}
