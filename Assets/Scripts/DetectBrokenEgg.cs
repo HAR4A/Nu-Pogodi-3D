@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DetectBrokenEgg : MonoBehaviour
 {
-    [SerializeField] private GameObject lvlLose;
+    [SerializeField] private GameObject[] lvlLoses;
     [SerializeField] private AudioSource brokenEgg;
+    [SerializeField] private AudioSource gameOver;
     public static int Count;
    
     public void Start()
@@ -20,7 +21,12 @@ public class DetectBrokenEgg : MonoBehaviour
 
         if (Count >= 5)
         {
-            lvlLose.SetActive(true);
+            gameOver.GetComponent<AudioSource>().Stop();
+
+            foreach (GameObject lvlLose in lvlLoses)
+            {
+                lvlLose.SetActive(true); 
+            }
             Spawner spawner = FindObjectOfType<Spawner>();
             if (spawner != null)
             {
