@@ -6,6 +6,7 @@ public class DetectBrokenEgg : MonoBehaviour
 {
     [SerializeField] private GameObject[] lvlLoses;
     [SerializeField] private AudioSource brokenEgg;
+    [SerializeField] private AudioSource stopChickenMusic;
     [SerializeField] private AudioSource gameOver;
     public static int Count;
    
@@ -17,22 +18,27 @@ public class DetectBrokenEgg : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         Count += 1;
-        brokenEgg.GetComponent<AudioSource>().Play();
+        brokenEgg.Play();
 
-        if (Count >= 5)
+        if (Count == 5)
         {
-            gameOver.GetComponent<AudioSource>().Stop();
+            stopChickenMusic.Stop();
+            gameOver.Play();
 
             foreach (GameObject lvlLose in lvlLoses)
             {
-                lvlLose.SetActive(true); 
+                lvlLose.SetActive(true);
+               
             }
             Spawner spawner = FindObjectOfType<Spawner>();
             if (spawner != null)
             {
                 spawner.StopSpawning();
+                
             }
         }
+
+       
 
         if (other.gameObject)
         {
